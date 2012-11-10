@@ -1,0 +1,29 @@
+<h1>Listing timelines</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Start date</th>
+    <th>Is secret mode</th>
+    <th>Is main line</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @timelines.each do |timeline| %>
+  <tr>
+    <td><%= timeline.name %></td>
+    <td><%= timeline.start_date %></td>
+    <td><%= timeline.is_secret_mode %></td>
+    <td><%= timeline.is_main_line %></td>
+    <td><%= link_to 'Show', timeline %></td>
+    <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
+    <td><%= link_to 'Destroy', timeline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Timeline', new_timeline_path %>

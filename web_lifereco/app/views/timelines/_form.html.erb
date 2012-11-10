@@ -1,0 +1,33 @@
+<%= form_for(@timeline) do |f| %>
+  <% if @timeline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@timeline.errors.count, "error") %> prohibited this timeline from being saved:</h2>
+
+      <ul>
+      <% @timeline.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :is_secret_mode %><br />
+    <%= f.check_box :is_secret_mode %>
+  </div>
+  <div class="field">
+    <%= f.label :is_main_line %><br />
+    <%= f.check_box :is_main_line %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
