@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110144547) do
+ActiveRecord::Schema.define(:version => 20121110150233) do
+
+  create_table "photos", :force => true do |t|
+    t.date     "upload_date"
+    t.integer  "storage_vendor"
+    t.string   "storage_path"
+    t.string   "photo_path"
+    t.date     "month"
+    t.boolean  "is_best_year_photo"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "timelines", :force => true do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.boolean  "is_secret_mode"
+    t.boolean  "is_main_line"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

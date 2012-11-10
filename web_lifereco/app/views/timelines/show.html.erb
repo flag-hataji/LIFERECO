@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @timeline.name %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @timeline.start_date %>
+</p>
+
+<p>
+  <b>Is secret mode:</b>
+  <%= @timeline.is_secret_mode %>
+</p>
+
+<p>
+  <b>Is main line:</b>
+  <%= @timeline.is_main_line %>
+</p>
+
+
+<%= link_to 'Edit', edit_timeline_path(@timeline) %> |
+<%= link_to 'Back', timelines_path %>

@@ -1,4 +1,8 @@
 WebLifereco::Application.routes.draw do
+  resources :photos
+
+  resources :timelines
+
   get "home/index"
 
   resources :users
