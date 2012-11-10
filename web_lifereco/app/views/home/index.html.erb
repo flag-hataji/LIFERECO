@@ -1,5 +1,33 @@
 
 
+<div id="timelineContainer">
+	<div class="timelineMajor">
+		<h2 class="timelineMajorMarker">Major Marker</h2>
+		<dl class="timelineMinor">
+			<dt id="event01"><a>Event</a></dt>
+			<dd class="timelineEvent" id="event01EX" style="display: none; ">
+				<p>Content about the event goes here.</p>
+			</dd><!-- /.timelineEvent -->
+		</dl><!-- /.timelineMinor -->
+	</div><!-- /.timelineMajor -->
+	<div class="timelineMajor">
+		<h2 class="timelineMajorMarker">Major Marker2</h2>
+		<dl class="timelineMinor">
+			<dt id="event02"><a>Event2</a></dt>
+			<dd class="timelineEvent" id="event02EX" style="display: none; ">
+				<p>Content about the event goes here.222</p>
+			</dd><!-- /.timelineEvent -->
+		</dl><!-- /.timelineMinor -->
+	</div><!-- /.timelineMajor -->
+
+
+</div><!-- /#timelineContainer -->
 <%= link_to "Create New Timeline", new_timeline_path %>
+
+<script>
+$(document).ready(function() {
+	$.timeliner();
+});
+</script>
 
 
