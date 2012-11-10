@@ -1,0 +1,33 @@
+<h1>Listing photos</h1>
+
+<table>
+  <tr>
+    <th>Upload date</th>
+    <th>Storage vendor</th>
+    <th>Storage path</th>
+    <th>Photo path</th>
+    <th>Month</th>
+    <th>Is best year photo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @photos.each do |photo| %>
+  <tr>
+    <td><%= photo.upload_date %></td>
+    <td><%= photo.storage_vendor %></td>
+    <td><%= photo.storage_path %></td>
+    <td><%= photo.photo_path %></td>
+    <td><%= photo.month %></td>
+    <td><%= photo.is_best_year_photo %></td>
+    <td><%= link_to 'Show', photo %></td>
+    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+    <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Photo', new_photo_path %>

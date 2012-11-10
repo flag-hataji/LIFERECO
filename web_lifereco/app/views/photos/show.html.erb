@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Upload date:</b>
+  <%= @photo.upload_date %>
+</p>
+
+<p>
+  <b>Storage vendor:</b>
+  <%= @photo.storage_vendor %>
+</p>
+
+<p>
+  <b>Storage path:</b>
+  <%= @photo.storage_path %>
+</p>
+
+<p>
+  <b>Photo path:</b>
+  <%= @photo.photo_path %>
+</p>
+
+<p>
+  <b>Month:</b>
+  <%= @photo.month %>
+</p>
+
+<p>
+  <b>Is best year photo:</b>
+  <%= @photo.is_best_year_photo %>
+</p>
+
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>
