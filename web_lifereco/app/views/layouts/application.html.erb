@@ -14,7 +14,20 @@
 </head>
 <body>
 	<div class="container">
-		<%= yield %>
+		<div class="raw">
+			<div class="span4">
+				<%= link_to image_tag("logo_lifereco_100.png"), :action => "index" %>
+		</div>
+		<div class="span5">
+			<ul class="unstlyed">
+				<li><%= link_to 'Timeline', timelines_path %>
+			</ul>
+		</div>
+		</div>
+		<div class="raw">
+			<div class="span9 hero-unit">
+			<%= yield %>
+			</div>
 	</div>
 </body>
 </html>
