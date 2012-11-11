@@ -1,0 +1,8 @@
+<h1>New memory</h1>
+
+
+<%= form_tag({:action => :create},  :multipart => true) do %>
+	<%=  file_field "file", "htmldata" %>
+	<%= submit_tag "登録" %>
+<% end %>
+<%= link_to 'Back', photos_path %>

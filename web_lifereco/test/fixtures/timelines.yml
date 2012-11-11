@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  start_date: 2012-11-11
+  is_secret_mode: false
+  is_main_line: false
+
+two:
+  name: MyString
+  start_date: 2012-11-11
+  is_secret_mode: false
+  is_main_line: false

@@ -1,0 +1,6 @@
+[submodule "web_lifereco/modules"]
+	path = web_lifereco/modules
+	url = https://popowa@github.com/popowa/timeliner.git
+[submodule "web_lifereco/modules/timeliner"]
+	path = web_lifereco/modules/timeliner
+	url = https://popowa@github.com/popowa/timeliner.git
