@@ -1,33 +1,95 @@
 
 
-<div id="timelineContainer">
-	<div class="timelineMajor">
-		<h2 class="timelineMajorMarker">Major Marker</h2>
-		<dl class="timelineMinor">
-			<dt id="event01"><a>Event</a></dt>
-			<dd class="timelineEvent" id="event01EX" style="display: none; ">
-				<p>Content about the event goes here.</p>
-			</dd><!-- /.timelineEvent -->
-		</dl><!-- /.timelineMinor -->
-	</div><!-- /.timelineMajor -->
-	<div class="timelineMajor">
-		<h2 class="timelineMajorMarker">Major Marker2</h2>
-		<dl class="timelineMinor">
-			<dt id="event02"><a>Event2</a></dt>
-			<dd class="timelineEvent" id="event02EX" style="display: none; ">
-				<p>Content about the event goes here.222</p>
-			</dd><!-- /.timelineEvent -->
-		</dl><!-- /.timelineMinor -->
-	</div><!-- /.timelineMajor -->
-
-
-</div><!-- /#timelineContainer -->
 <%= link_to "Create New Timeline", new_timeline_path %>
-
-<script>
-$(document).ready(function() {
-	$.timeliner();
-});
-</script>
+<%= link_to "Create New photo", new_photo_path %>
 
 
+<div id="ss-container" class="ss-container">
+    <div class="ss-row">
+        <div class="ss-left">
+            <h2 id="2012"></h2>
+        </div>
+        <div class="ss-right">
+            <h2>2012</h2>
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>March</span>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2012-3">2012/3</a>
+
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left" style="left: 0px;">
+            <a href="#" class="ss-circle ss-circle-2012-2">2012/2</a>
+        </div>
+        <div class="ss-right" stlye="right: 0%;">
+            <h3>
+                <span>Feburary</span>
+                <a href="#">Moving out!</a>
+            </h3>
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>January</span>
+                <a href="#">Happy New Years</a>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2012-1">2012/1</a>
+        </div>
+    </div>
+    <!--2011 -->
+
+    <div class="ss-row ss-large">
+        <div class="ss-left" style="left: 0px;">
+            <a href="#" class="ss-circle ss-circle-2011">2011</a>
+        </div>
+        <div class="ss-right">
+            <h2>2011</h2>
+        </div>
+    </div>
+
+
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>December</span>
+                <a href="#">Church with my mom</a>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2011-12">2011/12</a>
+
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left" style="left: 0px;">
+            <a href="#" class="ss-circle ss-circle-2011-11">2011/11</a>
+        </div>
+        <div class="ss-right" stlye="right: 0%;">
+            <h3>
+                <span>November</span>
+                <a href="#">Thankings Giving Dinner</a>
+            </h3>
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>October</span>
+                <a href="#">Winter is coming</a>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2011-10">2011/10</a>
+        </div>
+    </div>
+</div>

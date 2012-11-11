@@ -1,25 +1,96 @@
-<p id="notice"><%= notice %></p>
+<h1>Me, Andy</h1>
 
-<p>
-  <b>Name:</b>
-  <%= @timeline.name %>
-</p>
+<div id="ss-container" class="ss-container">
+    <div class="ss-row ss-medium">
+        <div class="ss-left" style="left: 0px;">
+            <%= link_to 'No photo for monthly memory', new_photo_path, { :class => "ss-circle ss-circle-missing" } %>
+        </div>
+        <div class="ss-right" stlye="right: 0%;">
+            <h3>
+                <span>April: <%= link_to 'No photo for monthly memory', new_photo_path %>
+            </span>
 
-<p>
-  <b>Start date:</b>
-  <%= @timeline.start_date %>
-</p>
+            </h3>
+        </div>
+    </div>
 
-<p>
-  <b>Is secret mode:</b>
-  <%= @timeline.is_secret_mode %>
-</p>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>March</span>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2012-3">2012/3</a>
 
-<p>
-  <b>Is main line:</b>
-  <%= @timeline.is_main_line %>
-</p>
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left" style="left: 0px;">
+            <a href="#" class="ss-circle ss-circle-2012-2">2012/2</a>
+        </div>
+        <div class="ss-right" stlye="right: 0%;">
+            <h3>
+                <span>Feburary</span>
+                <a href="#">Moving out!</a>
+            </h3>
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>January</span>
+                <a href="#">Happy New Years</a>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2012-1">2012/1</a>
+        </div>
+    </div>
+    <!--2011 -->
+
+    <div class="ss-row ss-large">
+        <div class="ss-left" style="left: 0px;">
+            <a href="#" class="ss-circle ss-circle-2011">2011</a>
+        </div>
+        <div class="ss-right">
+            <h2>2011</h2>
+        </div>
+    </div>
 
 
-<%= link_to 'Edit', edit_timeline_path(@timeline) %> |
-<%= link_to 'Back', timelines_path %>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>December</span>
+                <a href="#">Church with my mom</a>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2011-12">2011/12</a>
+
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left" style="left: 0px;">
+            <a href="#" class="ss-circle ss-circle-2011-11">2011/11</a>
+        </div>
+        <div class="ss-right" stlye="right: 0%;">
+            <h3>
+                <span>November</span>
+                <a href="#">Thankings Giving Dinner</a>
+            </h3>
+        </div>
+    </div>
+    <div class="ss-row ss-medium">
+        <div class="ss-left">
+            <h3>
+                <span>October</span>
+                <a href="#">Winter is coming</a>
+            </h3>
+        </div>
+        <div class="ss-right">
+            <a href="#" class="ss-circle ss-circle-2011-10">2011/10</a>
+        </div>
+    </div>
+</div>

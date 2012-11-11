@@ -69,6 +69,13 @@ class PhotosController < ApplicationController
     end
   end
 
+  def upload
+    uploaded_io = params[:person][:picture]
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'w') do |file|
+      file.write(uploaded_io.read)
+    end
+  end
+
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy

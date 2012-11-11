@@ -1,3 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :nickname, :password, :singup_date
+	has_many :timelines
+	attr_accessible :email, :name, :nickname, :password, :singup_date
 end

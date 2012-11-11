@@ -1,99 +1,149 @@
-/*
-* Timeliner.js
-* @version		1.0
-* @copyright	Tarek Anandan (http://www.technotarek.com)
-*/
-;(function($) {
 
-	$.timeliner = function(options){
-	// default plugin settings
-	settings = jQuery.extend({
-		timelineContainer: '#timelineContainer', // value: selector of the main element holding the timeline's content, default to #timelineContainer
-		startState: 'closed', // value: closed | open, default to closed; determines whether the timeline is initially collapsed or fully expanded 
-		baseSpeed: 200 // value: any integer, default to 200; determines the base speed, some animations are a multiple (4x) of the base speed
-	}, options);
-
-		$(document).ready(function() {
-
-			// If startState option is set to closed, hide all the events; else, show fully expanded upon load
-			if(settings.startState=='closed')
-			{
-				$(".timelineEvent").hide();
-			}else{
-				$(".timelineMinor dt, .timelineMinor dt a")
-					.addClass('open')
-					.css("fontSize", "1.2em");
-				$(".timelineEvent").show();
-			}
-
-			// Single Event
-			$(".timelineMinor dt").toggle(function(){
-
-				var currentId = $(this).attr('id');
-
-				// open Event
-				$("a",this)
-					.removeClass('closed')
-					.addClass('open')
-					.animate({ fontSize: "1.2em" }, settings.baseSpeed);
-
-				$("#"+currentId+"EX").show(4*settings.baseSpeed);
-
-			},function()
-			{
-				var currentId = $(this).attr('id');
-
-				// close Event
-				$("a",this)
-					.animate({ fontSize: "1.0em" }, 0)
-					.removeClass('open')
-					.addClass('closed');
-
-				$("#"+currentId+"EX").hide(4*settings.baseSpeed);
-
-			});
-
-			// Single Major Marker
-			$(".timelineMajorMarker").toggle(function()
-			{
-				// reset all animations
-				$(this).parents(".timelineMajor").find("dt a","dl.timelineMinor")
-					.animate({ fontSize: "1.2em" }, settings.baseSpeed)
-					.removeClass('closed')
-					.addClass('open');
-				$(this).parents(".timelineMajor").find(".timelineEvent").show(4*settings.baseSpeed);
-
-			},function()
-			{
-				// reset all animations
-				$(this).parents(".timelineMajor").find("dl.timelineMinor a")
-					.animate({ fontSize: "1.0em" }, settings.baseSpeed)
-					.removeClass('open')
-					.addClass('closed');
-				$(this).parents(".timelineMajor").find(".timelineEvent").hide(4*settings.baseSpeed);
-			});
-
-			// All Markers/Events
-			$(".expandAll").toggle(function()
-			{
-				// reset all animations
-				$(this).parents(settings.timelineContainer).find("dt a","dl.timelineMinor")
-					.animate({ fontSize: "1.2em" }, settings.baseSpeed)
-					.removeClass('closed')
-					.addClass('open');
-				$(this).parents(settings.timelineContainer).find(".timelineEvent").show(4*settings.baseSpeed);
-				$(this).html("- collapse all");
-
-			},function()
-			{
-				// reset all animations
-				$(this).parents(settings.timelineContainer).find("dl.timelineMinor a")
-					.animate({ fontSize: "1.0em" }, settings.baseSpeed)
-					.removeClass('open')
-					.addClass('closed');
-				$(this).parents(settings.timelineContainer).find(".timelineEvent").hide(4*settings.baseSpeed);
-				$(this).html("+ expand all");
-			});
-		});
-	};
-})(jQuery);
+        $(function() {
+            var $sidescroll = (function() {
+                var $rows           = $('#ss-container > div.ss-row'),
+                    $rowsViewport, $rowsOutViewport,
+                    $links          = $('#ss-links > a'),
+                    $win            = $(window),
+                    winSize         = {},
+                    anim            = false,
+                    scollPageSpeed  = 2000 ,
+                    scollPageEasing = 'easeInOutExpo',
+                    hasPerspective  = false,                    
+                    perspective     = hasPerspective && Modernizr.csstransforms3d,
+                    // initialize function
+                    init            = function() {
+                        getWinSize();
+                        initEvents();
+                        defineViewport();
+                        setViewportRows();
+                        if( perspective ) {
+                            $rows.css({
+                                '-webkit-perspective'           : 600,
+                                '-webkit-perspective-origin'    : '50% 0%'
+                            });
+                        }
+                        $rowsViewport.find('a.ss-circle').addClass('ss-circle-deco');
+                        placeRows();                        
+                    },
+                    defineViewport  = function() {
+                        $.extend( $.expr[':'], {
+                            inviewport  : function ( el ) {
+                                if ( $(el).offset().top < winSize.height ) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                        
+                        });
+                    
+                    },
+                    setViewportRows = function() {                        
+                        $rowsViewport       = $rows.filter(':inviewport');
+                        $rowsOutViewport    = $rows.not( $rowsViewport )
+                        
+                    },
+                    getWinSize      = function() {
+                        winSize.width   = $win.width();
+                        winSize.height  = $win.height();
+                    
+                    },
+                    initEvents      = function() {
+                        $links.on( 'click.Scrolling', function( event ) {
+                            $('html, body').stop().animate({
+                                scrollTop: $( $(this).attr('href') ).offset().top
+                            }, scollPageSpeed, scollPageEasing );                            
+                            return false;
+                        });
+                        $(window).on({
+                            'resize.Scrolling' : function( event ) {
+                                getWinSize();
+                                setViewportRows();
+                                $rows.find('a.ss-circle').removeClass('ss-circle-deco');
+                                $rowsViewport.each( function() {
+                                    $(this).find('div.ss-left')
+                                           .css({ left   : '0%' })
+                                           .end()
+                                           .find('div.ss-right')
+                                           .css({ right  : '0%' })
+                                           .end()
+                                           .find('a.ss-circle')
+                                           .addClass('ss-circle-deco');
+                                });
+                            },
+                            'scroll.Scrolling' : function( event ) {
+                                if( anim ) return false;
+                                anim = true;
+                                setTimeout( function() {
+                                    placeRows();
+                                    anim = false;
+                                }, 10 );
+                            }
+                        });
+                    },
+                    placeRows       = function() {
+                        var winscroll   = $win.scrollTop(),
+                            winCenter   = winSize.height / 2 + winscroll;
+                        $rowsOutViewport.each( function(i) {
+                            var $row    = $(this),
+                                $rowL   = $row.find('div.ss-left'),
+                                $rowR   = $row.find('div.ss-right'),
+                                rowT    = $row.offset().top;
+                            if( rowT > winSize.height + winscroll ) {
+                                if( perspective ) {
+                                    $rowL.css({
+                                        '-webkit-transform' : 'translate3d(-75%, 0, 0) rotateY(-90deg) translate3d(-75%, 0, 0)',
+                                        'opacity'           : 0
+                                    });
+                                    $rowR.css({
+                                        '-webkit-transform' : 'translate3d(75%, 0, 0) rotateY(90deg) translate3d(75%, 0, 0)',
+                                        'opacity'           : 0
+                                    });
+                                }
+                                else {
+                                    $rowL.css({ left        : '-50%' });
+                                    $rowR.css({ right       : '-50%' });
+                                }
+                            }
+                            else {
+                                var rowH    = $row.height(),
+                                    factor  = ( ( ( rowT + rowH / 2 ) - winCenter ) / (
+                                        winSize.height / 2 + rowH / 2 ) ),
+                                    val     = Math.max( factor * 50, 0 );
+                                if( val <= 0 ) {
+                                    if( !$row.data('pointer') ) {
+                                        $row.data( 'pointer', true );
+                                        $row.find('.ss-circle').addClass('ss-circle-deco');
+                                    }
+                                }
+                                else {
+                                    if( $row.data('pointer') ) {
+                                        $row.data( 'pointer', false );
+                                        $row.find('.ss-circle').removeClass('ss-circle-deco');
+                                    }
+                                }
+                                if( perspective ) {
+                                    var t       = Math.max( factor * 75, 0 ),
+                                        r       = Math.max( factor * 90, 0 ),
+                                        o       = Math.min( Math.abs( factor - 1 ), 1 );
+                                    
+                                    $rowL.css({
+                                        '-webkit-transform' : 'translate3d(-' + t + '%, 0, 0) rotateY(-' + r + 'deg) translate3d(-' + t + '%, 0, 0)',
+                                        'opacity'           : o
+                                    });
+                                    $rowR.css({
+                                        '-webkit-transform' : 'translate3d(' + t + '%, 0, 0) rotateY(' + r + 'deg) translate3d(' + t + '%, 0, 0)',
+                                        'opacity'           : o
+                                    });
+                                }
+                                else {
+                                    $rowL.css({ left    : - val + '%' });
+                                    $rowR.css({ right   : - val + '%' });
+                                }
+                            }   
+                        });
+                    };
+                return { init : init };
+            })();
+            $sidescroll.init();
+        });
