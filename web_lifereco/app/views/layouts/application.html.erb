@@ -11,21 +11,24 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body >
 
-	<div class="container">
-		<div class="raw">
-			<div class="span4">
-				<%= link_to image_tag("logo_lifereco_alpha1600x500.png"), :controller => "home", :action => "index" %>
-		</div>
-		<div class="span5">
-		</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12 hero-unit">
-			<%= yield %>
+</head>
+<body>
+<img class="bg" src="assets/bg1014x700.png" alt="" />
+	<div id="container">
+		<div class="container">
+			<div class="raw">
+				<div class="span4">
+					<%= link_to image_tag("logo_lifereco_alpha1600x500.png"), :controller => "home", :action => "index" %>
 			</div>
+			<div class="span5">
+			</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12 hero-unit">
+				<%= yield %>
+				</div>
+		</div>
 	</div>
 </body>
 </html>
